@@ -29,3 +29,7 @@
 7. Raspberry Pi
 8. Keras/Tensorflow
 9. AWS DynamoDB
+
+# Models
+
+1. cough_image_v1 (trained on 10000 96x96 images, transfer learning MobileNetV2 0.35)
