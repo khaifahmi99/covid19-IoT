@@ -32,4 +32,5 @@
 
 # Models
 
-1. cough_image_v1 (trained on 10000 96x96 images, transfer learning MobileNetV2 0.35)
+1. cough_image_v1:78% acc (trained on approx 10000 96x96 images, transfer learning MobileNetV2 0.35)
+2. cough_image_v2:66% acc (trained on approx 10000 96x96 images, transfer learning MobileNetV2 0.1)
