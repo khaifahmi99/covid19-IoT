@@ -30,9 +30,13 @@
 8. Keras/Tensorflow
 9. AWS DynamoDB
 
-# Models
+## Models
 
 1. cough_image_v1:78% acc (trained on approx 10000 96x96 images, transfer learning MobileNetV2 0.35)
 2. cough_image_v2:66% acc (trained on approx 10000 96x96 images, transfer learning MobileNetV2 0.1)
 3. cough_image_v3:74% acc (trained on approx 10000 96x96 images, 32-16Conv2D -> NN Dense(10))
 4. cough_image_v4:69% acc (trained on approx 10000 64x64 images, 16-16Conv2D -> NN Dense(10))
+
+## Datasets
+
+1. Flu Like Symptoms BIISC (source: https://web.bii.a-star.edu.sg/~chengli/FluRecognition.htm)
