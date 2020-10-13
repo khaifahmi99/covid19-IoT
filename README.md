@@ -38,6 +38,7 @@
 4. cough_image_v4:69% acc (trained on approx 10000 64x64 images, 16-16Conv2D -> NN Dense(10))
 5. cough_image_short_distance_v1: 90% acc (trained on approx 200 64x64 images, 16-16 Conv2D -> NN Dense(10))
 6. cough_sound:96% acc (trained on 10 mins wav, Conv1D) (C++ EON compile) 
+7. cough_sound:95% acc (trained on 10 mins wav, Conv1D, with data augmentation) (C++ EON compile)
 
 ## Datasets
 
