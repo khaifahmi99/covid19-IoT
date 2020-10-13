@@ -37,7 +37,10 @@
 3. cough_image_v3:74% acc (trained on approx 10000 96x96 images, 32-16Conv2D -> NN Dense(10))
 4. cough_image_v4:69% acc (trained on approx 10000 64x64 images, 16-16Conv2D -> NN Dense(10))
 5. cough_image_short_distance_v1: 90% acc (trained on approx 200 64x64 images, 16-16 Conv2D -> NN Dense(10))
+6. cough_sound:96% acc (trained on 10 mins wav, Conv1D) (C++ EON compile) 
 
 ## Datasets
 
 1. Flu Like Symptoms BIISC (source: https://web.bii.a-star.edu.sg/~chengli/FluRecognition.htm)
+2. Cough Sound (source: https://github.com/hernanmd/COVID-19-train-audio/tree/master/not-covid19-coughs)
+3. Urban Sound 8K (source: https://www.kaggle.com/chrisfilo/urbansound8k)
