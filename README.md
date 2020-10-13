@@ -36,6 +36,7 @@
 2. cough_image_v2:66% acc (trained on approx 10000 96x96 images, transfer learning MobileNetV2 0.1)
 3. cough_image_v3:74% acc (trained on approx 10000 96x96 images, 32-16Conv2D -> NN Dense(10))
 4. cough_image_v4:69% acc (trained on approx 10000 64x64 images, 16-16Conv2D -> NN Dense(10))
+5. cough_image_short_distance_v1: 90% acc (trained on approx 200 64x64 images, 16-16 Conv2D -> NN Dense(10))
 
 ## Datasets
 
