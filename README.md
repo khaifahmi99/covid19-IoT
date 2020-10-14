@@ -32,13 +32,15 @@
 
 ## Models
 
-1. cough_image_v1:78% acc (trained on approx 10000 96x96 images, transfer learning MobileNetV2 0.35)
-2. cough_image_v2:66% acc (trained on approx 10000 96x96 images, transfer learning MobileNetV2 0.1)
-3. cough_image_v3:74% acc (trained on approx 10000 96x96 images, 32-16Conv2D -> NN Dense(10))
-4. cough_image_v4:69% acc (trained on approx 10000 64x64 images, 16-16Conv2D -> NN Dense(10))
-5. cough_image_short_distance_v1: 90% acc (trained on approx 200 64x64 images, 16-16 Conv2D -> NN Dense(10))
-6. cough_sound:96% acc (trained on 10 mins wav, Conv1D) (C++ EON compile) 
-7. cough_sound:95% acc (trained on 10 mins wav, Conv1D, with data augmentation) (C++ EON compile)
+| Name | Version | Testing Accuracy | Dataset | Architecture | Status (on OpenMV H7) |
+| --- | --- | --- | --- | --- | --- |
+| cough_image | v1 | 78% | 10000 96x96 images | transfer learning MobileNetV2 0.35 | Insufficient RAM |
+| cough_image | v2 | 66% | 10000 96x96 images | transfer learning MobileNetV2 0.1 | Insufficient RAM |
+| cough_image | v3 | 74% | 10000 96x96 images | 32-16Conv2D -> NN Dense(10) | Insufficient RAM |
+| cough_image | v4 | 69% | 10000 64x64 images | 16-16Conv2D -> NN Dense(10) | Works |
+| cough_image_short_distance | v1 | 90% | 200 64x64 images | 16-16Conv2D -> Dense(10) | Works |
+| cough_sound | v1 | 96% | 10 mins wav files | Conv1D without Data Augmentation | Not supported |
+| cough_sound | v2 | 95% | 10 mins wav files | Conv1D with Data Augmentation | Not supported |
 
 ## Datasets
 
