@@ -41,7 +41,9 @@
 | cough_image_short_distance | v1 | 90% | 200 64x64 images | 16-16Conv2D -> Dense(10) | Works |
 | cough_sound | v1 | 96% | 10 mins wav files | Conv1D without Data Augmentation | Not supported |
 | cough_sound | v2 | 95% | 10 mins wav files | Conv1D with Data Augmentation | Not supported |
-
+| glove_detection| v0 | 93% | 147 64x64 images | 32-16Conv2D -> NN Dense(10) | Insufficient RAM |
+| glove_detection| v1 | 100% | 147 64x64 images | 32-16Conv2D -> NN Dense(10) | Not tested |
+| glove_detection| v2 | 85% | 147 48x48 images | 32-1Conv2D -> NN Dense(10) | Works |
 ## Datasets
 
 1. Flu Like Symptoms BIISC (source: https://web.bii.a-star.edu.sg/~chengli/FluRecognition.htm)
