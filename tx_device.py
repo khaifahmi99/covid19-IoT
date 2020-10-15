@@ -1,7 +1,7 @@
 #******************************************************************
 #% FILENAME:        tx_device.py
 #% AUTHOR:          Sam Golding 
-#% VERSION:         1.0
+#% VERSION:         1.1
 #% VERSION DATE:    14/10/2020
 #%
 #% #% DESCRIPTION: This function constructs a dictionary data type 
@@ -45,3 +45,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
