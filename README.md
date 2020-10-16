@@ -43,7 +43,8 @@
 | cough_sound | v2 | 95% | 10 mins wav files | Conv1D with Data Augmentation | Not supported |
 | glove_detection| v0 | 93% | 147 64x64 images | 32-16Conv2D -> NN Dense(10) | Insufficient RAM |
 | glove_detection| v1 | 100% | 147 64x64 images | 32-16Conv2D -> NN Dense(10) | Not tested |
-| glove_detection| v2 | 85% | 147 48x48 images | 32-1Conv2D -> NN Dense(10) | Works |
+| glove_detection| v2 | 85% | 147 48x48 images | 32-16Conv2D -> NN Dense(10) | Works |
+| fall_detection | v1 | 88% | 300 64x64 images | 16-16Conv2D | Not tested |
 
 ## Datasets
 
