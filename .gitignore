@@ -1,2 +1,6 @@
 .DS_Store
 dataset/*
+bin/
+lib/
+include/
+pyvenv.cfg
