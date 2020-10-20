@@ -55,7 +55,7 @@
 
 ## Run Node App Locally
 
-1. Make sure npm and nodejs
+1. Make sure npm and nodejs is installed
 2. Run `cd nodeApp`
 3. Install all dependencies `npm install`
 3. Run application `npm run start`
