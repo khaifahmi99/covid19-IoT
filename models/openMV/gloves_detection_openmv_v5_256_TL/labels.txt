@@ -1,0 +1,3 @@
+gloves
+no_gloves
+no_hand
