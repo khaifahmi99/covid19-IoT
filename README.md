@@ -52,3 +52,11 @@
 2. Cough Sound (source: https://github.com/hernanmd/COVID-19-train-audio/tree/master/not-covid19-coughs)
 3. Urban Sound 8K (source: https://www.kaggle.com/chrisfilo/urbansound8k)
 4. Fall Dataset (source: http://falldataset.com)
+
+## Run Node App Locally
+
+1. Make sure npm and nodejs
+2. Run `cd nodeApp`
+3. Install all dependencies `npm install`
+3. Run application `npm run start`
+4. The application should open automatically, if it does not, paste `http://localhost:8080/` in your browser
