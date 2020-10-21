@@ -54,6 +54,8 @@
 2. Cough Sound (source: https://github.com/hernanmd/COVID-19-train-audio/tree/master/not-covid19-coughs)
 3. Urban Sound 8K (source: https://www.kaggle.com/chrisfilo/urbansound8k)
 4. Fall Dataset (source: http://falldataset.com)
+5. Hand Dataset 11K (source: https://sites.google.com/view/11khands)
+6. No Hand Dataset 7K (source: https://www1.cs.columbia.edu/CAVE/software/softlib/coil-100.php)
 
 ## Run Node App Locally
 
