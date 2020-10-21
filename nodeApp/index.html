@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid-19 IoT</title>
+</head>
+
+<body>
+    <div>
+        <h1>Charts Page</h1>
+    </div>
+    <div id="chart">
+        <button onclick="drawChart()">Fetch Data</button>
+        <div id="data"></div>
+    </div>
+
+    <script>
+        function drawChart() {
+            var url = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Cough';
+            fetch(url, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                        'Access-Control-Allow-Credentials': true,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    data.forEach(d => {
+                        var id = document.createTextNode(d.Id);
+                        var trigger = document.createTextNode(d['TriggerType']);
+                        var ts = document.createTextNode(d['Timestamp']);
+
+                        console.log(id);
+                        console.log(trigger);
+                        console.log(ts);
+
+                        var para1 = document.createElement("p").appendChild(id);
+                        var para2 = document.createElement("p").appendChild(trigger);
+                        var para3 = document.createElement("p").appendChild(ts);
+
+                        document.getElementById("data").appendChild(para1);
+                        document.getElementById("data").appendChild(para2);
+                        document.getElementById("data").appendChild(para3);
+                        document.getElementById("data").appendChild(document.createElement("br"));
+
+                    });
+                })
+        }
+    </script>
+</body>
+
+</html>
