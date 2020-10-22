@@ -5,49 +5,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covid-19 IoT</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
     <div>
-        <h1>Charts Page</h1>
+        <h1 class="center-align">Charts Page</h1>
     </div>
-    <div id="chart">
+    <div class="center-align">
         <button onclick="drawChart()">Fetch Data</button>
-        <div id="data"></div>
+    </div>
+    <div id="chart" class="container">
+        <div class="row">
+            <div class="col s4">
+                <canvas id="myChart" width="200" height="200"></canvas>
+            </div>
+            <div class="col s4">
+                <canvas id="myChart2" width="200" height="200"></canvas>
+            </div>
+            <div class="col s4">
+                <canvas id="myChart3" width="200" height="200"></canvas>
+            </div>
+        </div>
     </div>
 
     <script>
+        var ctx = document.getElementById('myChart');
+        var ctx2 = document.getElementById('myChart2');
+        var ctx3 = document.getElementById('myChart3');
+
+        function arrayMin(arr) {
+            return arr.reduce(function(p, v) {
+                return (p < v ? p : v);
+            });
+        }
+
         function drawChart() {
-            var url = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Cough';
-            fetch(url, {
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                        'Access-Control-Allow-Credentials': true,
-                        'Content-Type': 'application/json'
-                    }
-                })
+            drawDoughnut('Cough', ctx);
+            drawDoughnut('Glove', ctx2);
+            drawDoughnut('Fall', ctx3);
+        }
+
+        function drawDoughnut(triggerType, position) {
+
+            if (triggerType === "Cough") {
+                var color = "rgba(255, 0, 255, 0.5)";
+            } else if (triggerType === "Fall") {
+                var color = "rgba(255, 255, 0, 0.5)";
+            } else {
+                color = "rgba(0, 255, 255, 0.5)"
+            }
+
+            var timestamps = [];
+            var confidences = [];
+            var triggers = [];
+
+            var url = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=' + triggerType;
+            fetch(url)
                 .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                    data.forEach(d => {
-                        var id = document.createTextNode(d.Id);
-                        var trigger = document.createTextNode(d['TriggerType']);
-                        var ts = document.createTextNode(d['Timestamp']);
+                .then((res) => {
+                    // console.log(res);
+                    res.forEach(d => {
 
-                        console.log(id);
-                        console.log(trigger);
-                        console.log(ts);
+                        timestamps.push(d['Timestamp']);
+                        confidences.push(d['Confidence']);
+                        triggers.push(d['TriggerType']);
 
-                        var para1 = document.createElement("p").appendChild(id);
-                        var para2 = document.createElement("p").appendChild(trigger);
-                        var para3 = document.createElement("p").appendChild(ts);
+                    });
+                }).then(() => {
+                    var sum = 0;
+                    for (var i = 0; i < confidences.length; i++) {
+                        sum += confidences[i]; //don't forget to add the base
+                    }
+                    var confidenceAverage = sum / confidences.length;
+                    var minTimestamp = arrayMin(timestamps);
+                    var arrCount = triggers.length;
 
-                        document.getElementById("data").appendChild(para1);
-                        document.getElementById("data").appendChild(para2);
-                        document.getElementById("data").appendChild(para3);
-                        document.getElementById("data").appendChild(document.createElement("br"));
-
+                    var myBarChart = new Chart(position, {
+                        type: 'bar',
+                        data: {
+                            datasets: [{
+                                barPercentage: 0.8,
+                                barThickness: 20,
+                                maxBarThickness: 20,
+                                minBarLength: 2,
+                                data: [arrCount],
+                                label: triggerType,
+                                backgroundColor: color
+                            }]
+                        },
+                        options: {
+                            tooltips: {
+                                enabled: false
+                            },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        suggestedMin: 0,
+                                        suggestedMax: 5
+                                    }
+                                }]
+                            }
+                        }
                     });
                 })
         }
