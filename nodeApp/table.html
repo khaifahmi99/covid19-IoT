@@ -31,10 +31,17 @@
     <script>
         // get the data
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        let urlG = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Glove'
-        let urlC = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Cough'
-        let urlF = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Fall'
+        let urlG = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Glove';
+        let urlC = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Cough';
+        let urlF = 'https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Fall';
 
+        function convertTsToTimeString(ts) {
+            var convertedTimeStamp = new Date(ts * 1000);
+            convertedTimeStamp = convertedTimeStamp.toISOString().split('T');
+            convertedTimeStamp = convertedTimeStamp[0] + " " + convertedTimeStamp[1].substr(0, 5);
+
+            return convertedTimeStamp;
+        }
 
         let dataG = fetch(proxyurl + urlG).then(d => d.json()).then(dataG => {
             let projectData = dataG.map(item => {
@@ -78,10 +85,17 @@
                 var cells = rows.selectAll('td')
                     .data(function(row) {
                         return columns.map(function(column) {
-                            return {
-                                column: column,
-                                value: row[column]
-                            };
+                            if (column == "Timestamp") {
+                                return {
+                                    column: column,
+                                    value: convertTsToTimeString(row[column])
+                                };
+                            } else {
+                                return {
+                                    column: column,
+                                    value: row[column]
+                                };
+                            }
                         });
                     })
                     .enter()
@@ -141,10 +155,17 @@
                 var cells = rows.selectAll('td')
                     .data(function(row) {
                         return columns.map(function(column) {
-                            return {
-                                column: column,
-                                value: row[column]
-                            };
+                            if (column == "Timestamp") {
+                                return {
+                                    column: column,
+                                    value: convertTsToTimeString(row[column])
+                                };
+                            } else {
+                                return {
+                                    column: column,
+                                    value: row[column]
+                                };
+                            }
                         });
                     })
                     .enter()
@@ -206,10 +227,17 @@
                 var cells = rows.selectAll('td')
                     .data(function(row) {
                         return columns.map(function(column) {
-                            return {
-                                column: column,
-                                value: row[column]
-                            };
+                            if (column == "Timestamp") {
+                                return {
+                                    column: column,
+                                    value: convertTsToTimeString(row[column])
+                                };
+                            } else {
+                                return {
+                                    column: column,
+                                    value: row[column]
+                                };
+                            }
                         });
                     })
                     .enter()
