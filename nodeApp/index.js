@@ -14,7 +14,15 @@ app.get("/charts", (req, res) => {
         root: __dirname,
         dotfiles: 'deny',
     }
-    res.sendFile('index.html', options, function(err) {});
+    res.sendFile('charts.html', options, function(err) {});
+});
+
+app.get("/data", (req, res) => {
+    // var options = {
+    //     root: __dirname,
+    //     dotfiles: 'deny',
+    // }
+    res.sendFile('table.html', options, function(err) {});
 })
 
 app.listen(port, () => {
