@@ -9,6 +9,14 @@ app.get("/", (req, res) => {
     res.json("Welcome to the Covid-IoT Project");
 });
 
+app.get("/charts", (req, res) => {
+    var options = {
+        root: __dirname,
+        dotfiles: 'deny',
+    }
+    res.sendFile('index.html', options, function(err) {});
+})
+
 app.listen(port, () => {
     console.log("Started on Port " + port);
 });
