@@ -1,0 +1,111 @@
+html, body {
+  background-color: #f5eeec;
+  font-family: 'Karla', sans-serif;
+}
+
+.main {
+  width: 100%;
+  font: 10px sans-serif;
+  display: flex;
+  text-align: center;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+.loader {
+  position: absolute;
+  top: 200px;
+}
+
+.content {
+  margin: auto;
+}
+
+.horse-point {
+  fill: rgba(224, 0, 120, 0.3)
+}
+
+.chart {
+  margin-top: 100px;
+  overflow: visible
+}
+
+.tweet {
+  font: normal normal 14px/1.4 Helvetica,Roboto,"Segoe UI",Calibri,sans-serif;
+  .tweet-header {
+    .tweet-author {
+      font-size: 13px;
+      color: #6F7888;
+    }
+  }
+  .tweet-body {
+    margin-top: 14px;
+  }
+  time {
+    font-size: 14px;
+    color: #697888;
+  }
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: #fff;
+  color: #333;
+  border-radius: 5px;
+  transition: opacity 0.2s ease-in-out;
+  max-width: 400px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  width: 100%;
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  line-height: 1;
+  color: #fff;
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips specifically */
+.d3-tip.n:after {
+  margin: -2px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.d3-tip span {
+  transition: scale 0.2s ease;
+}
+
+
+td, th {
+    padding: 1px 4px;
+    border: 1px black solid;
+}
+
+
+.bar{
+    fill: steelblue;
+}
+ 
+.bar:hover{
+    fill: brown;
+  }
+ 
+.axis {
+      font: 10px sans-serif;
+    }
+ 
+.axis path,
+.axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }

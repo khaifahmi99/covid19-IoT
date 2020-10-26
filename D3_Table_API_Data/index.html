@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Data Visualization" />
+  <meta name="keywords" content="HTML, CSS, D3" />
+  
+  <title>Table API AWS Data</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script src="scripts/plot3.js"></script>
+  <link href= "styles/style2.css" rel="stylesheet"/>
+	
+</head>
+
+<body>
+
+  
+<div class="main" id="main">
+  <div class="content">
+	  <p></p>
+	  <h1>Table API Data</h1>
+  </div>
+</div>
+  
+<script>
+// set the dimensions of the canvas
+var margin = {top: 20, right: 20, bottom: 70, left: 56},
+    width = 300 - margin.left - margin.right,
+    height = 200 - margin.top - margin.bottom;
+ 
+ 
+// set the ranges
+var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+ 
+var y = d3.scale.linear().range([height, 0]);
+ 
+// define the axis
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+ 
+ 
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10);
+ 
+ 
+// add the SVG element
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+ 
+ 
+// load the data from AWS via a RESTful API to the resource 
+d3.json('https://8vli4zwpec.execute-api.ap-southeast-2.amazonaws.com/dev/api/chart?triggerType=Glove', function(error, data) {
+ 
+    data.forEach(function(d) {
+        d.TriggerType = d.TriggerType;
+        d.Confidence = +d.Confidence;
+		console.log(d);
+		console.table(d);
+    });
+ 
+  // scale the range of the data
+  x.domain(data.map(function(d) { return d.TriggerType; }));
+  y.domain([0, d3.max(data, function(d) { return d.Confidence; })]);
+ 
+  // add axis
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", "-.55em")
+      .attr("transform", "rotate(-90)" );
+ 
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append("text")
+      .attr("y", -16)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Confidence");
+ 
+ 
+
+	// Add bar chart
+  svg.selectAll("bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.TriggerType); })
+      .attr("width", x.rangeBand() - 20)
+      .attr("y", function(d) { return y(d.Confidence); })
+      .attr("height", function(d) { return height - y(d.Confidence); });
+	  
+  
+});
+
+
+ 
+</script>
+
+</body>
+
+</html>
