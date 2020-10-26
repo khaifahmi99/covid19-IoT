@@ -18,10 +18,10 @@ app.get("/charts", (req, res) => {
 });
 
 app.get("/data", (req, res) => {
-    // var options = {
-    //     root: __dirname,
-    //     dotfiles: 'deny',
-    // }
+    var options = {
+        root: __dirname,
+        dotfiles: 'deny',
+    }
     res.sendFile('table.html', options, function(err) {});
 })
 

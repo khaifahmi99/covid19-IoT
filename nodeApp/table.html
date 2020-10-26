@@ -48,6 +48,9 @@
             });
 
             function tabulate(dataG, columns) {
+                // give title to table
+                d3.select('body').append('h4').text("Gloves Data").attr("class", "left-align");
+
                 var table = d3.select('body').append('table')
                     .style("border-collapse", "collapse")
                     .style("border", "2px black solid")
@@ -87,6 +90,8 @@
                         return d.value;
                     });
 
+                d3.select('body').append("br");
+
                 return table;
             }
 
@@ -106,6 +111,9 @@
             });
 
             function tabulate(dataC, columns) {
+                // give title to table
+                d3.select('body').append('h4').text("Cough Data").attr("class", "left-align");
+
                 var table = d3.select('body').append('table')
                     .style("border-collapse", "collapse")
                     .style("border", "2px black solid")
@@ -145,6 +153,8 @@
                         return d.value;
                     });
 
+                d3.select('body').append("br");
+
                 return table;
             }
 
@@ -166,6 +176,9 @@
             });
 
             function tabulate(dataF, columns) {
+                // give title to table
+                d3.select('body').append('h4').text("Fall Data").attr("class", "left-align");
+
                 var table = d3.select('body').append('table')
                     .style("border-collapse", "collapse")
                     .style("border", "2px black solid")
@@ -204,6 +217,8 @@
                     .text(function(d) {
                         return d.value;
                     });
+
+                d3.select('body').append("br");
 
                 return table;
             }
