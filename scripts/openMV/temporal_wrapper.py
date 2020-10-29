@@ -21,7 +21,7 @@ class TemporalWrapper():
         self.positive_class = positive_class
         self.confidence_thres = confidence_thres
 
-    def predict(self, img, name):
+    def predict(self, img, name, evaluation_method="count"):
         for obj in tf.classify(self.net, img, min_scale=1.0, scale_mul=0.8, x_overlap=0.5, y_overlap=0.5):
             print("**********\nPredictions () at [x=%d,y=%d,w=%d,h=%d]" % obj.rect())
             img.draw_rectangle(obj.rect())
@@ -38,20 +38,51 @@ class TemporalWrapper():
                 img.draw_string(obj.x()+3, obj.y()-1, self.labels[obj.output().index(max(obj.output()))], mono_space = False)
 
             results = self.format_predictions(predictions_list)
-            if len(self.preds) >= self.window_size:
-                self.preds = self.preds[1:]
+            
+            if evaluation_method == "count":
+                if len(self.preds) >= self.window_size:
+                    self.preds = self.preds[1:]
 
-            if results['class'] == self.positive_class:
-                self.preds.append(results['class'])
-            else:
-                self.preds.append(None)
+                if results['class'] == self.positive_class:
+                    self.preds.append(results['class'])
+                else:
+                    self.preds.append(None)
 
-            if None in self.preds:
-                self.green_led.on()
-                self.red_led.off()
+                # evaluate
+                if None in self.preds:
+                    self.green_led.on()
+                    self.red_led.off()
+                else:
+                    self.red_led.on()
+                    self.green_led.off()
+
+            elif evaluation_method == "average":
+                if len(self.labels) != 2:
+                    print("average evaluation_method only support binary classification")
+                    return
+
+                if len(self.scores) >= self.window_size:
+                    self.scores = self.scores[1:]
+
+                if results['class'] == self.positive_class:
+                    self.scores.append(results['confidence'])
+                else:
+                    self.scores.append(1 - results['confidence'])
+
+                # evaluate
+                if calculate_average(self.scores) > self.confidence_thres:
+                    self.green_led.on()
+                    self.red_led.off()
+                else:
+                    self.red_led.on()
+                    self.green_led.off()
+
             else:
-                self.red_led.on()
-                self.green_led.off()
+                print("evaluation_method param can only be either one in ['count', 'average']")
+                return
+
+    def calculate_average(arr):
+        return sum(lst) / len(lst) 
 
     def format_predictions(self, arr):
         c = 0
