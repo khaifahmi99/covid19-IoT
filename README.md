@@ -64,3 +64,19 @@
 3. Install all dependencies `npm install`
 3. Run application `npm run start`
 4. The application should open automatically, if it does not, paste `http://localhost:8080/` in your browser
+
+## Run WebAssembly App Locally
+
+Models can be deployed as a WebAssembly library. This allows us to run our model locally, without any compilation. These are the instructions to achieve it.
+1. Open the file code_examples_wasm.txt and “Copy” any of the 10 examples there are.
+2. Open a terminal or command prompt in the folder WebAssembly\gloves_detection_v6-wasm-v1 and “paste” the code.
+3. This will run the signal processing pipeline, and then classify the output (example):
+{
+  anomaly: 0,
+  results: [
+    { label: 'gloves', value: 0.05859375 },
+    { label: 'no_gloves', value: 0.9375 },
+    { label: 'no_hand', value: 0.0078125 }
+  ]
+}
+Which matches the values we just saw in the edgeimpulse studio. We now have our model running locally!
