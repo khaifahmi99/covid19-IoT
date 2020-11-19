@@ -80,3 +80,12 @@ Models can be deployed as a WebAssembly library. This allows us to run our model
   ]
 }
 Which matches the values we just saw in the edgeimpulse studio. We now have our model running locally!
+
+## Run Models RaspberryPI
+
+These models were tested in an environment with OpenCV 4.4.0, Python 3.7.3, protobuf 3.5.1, numpy 1.19.4 and the mobilenet_v1_1.0_224_quant.tflite model as the basis for tensorflow lite.
+Using Picamera.
+To test any model; you just have to change the labels.txt and trained.tflite files for each model.
+1. Go to / examples / lite / examples / image_classification / raspberry_pi
+2. Put the next code:
+   python3 classify_picamera.py --model trained.tflite --labels labels.txt
