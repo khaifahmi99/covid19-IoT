@@ -1,0 +1,3 @@
+[submodule "PI_code/examples"]
+	path = PI_code/examples
+	url = https://github.com/khaifahmi99/covid19-IoT
